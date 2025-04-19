@@ -1,0 +1,38 @@
+# lefthook.yml
+
+commit-msg:
+  scripts:
+    "commitlint.sh":
+      runner: bash
+
+pre-commit:
+  commands:
+    1_format_write:
+      glob: "*.{js,ts,cjs,mjs,d.cts,d.mts,jsx,tsx,json,jsonc}"
+      run: bunx biome check --formatter-enabled=true --organize-imports-enabled=false --linter-enabled=false --write --no-errors-on-unmatched --files-ignore-unknown=true {staged_files} && git update-index --again
+    2_import_sort_fix:
+      glob: "*.{js,ts,cjs,mjs,d.cts,d.mts,jsx,tsx,json,jsonc}"
+      run: bunx biome check --organize-imports-enabled=true --formatter-enabled=false --linter-enabled=false --fix --unsafe --no-errors-on-unmatched --files-ignore-unknown=true {staged_files} && git update-index --again
+    3_lint_fix:
+      glob: "*.{js,ts,cjs,mjs,d.cts,d.mts,jsx,tsx,json,jsonc}"
+      run: bunx biome check --linter-enabled=true --formatter-enabled=false --organize-imports-enabled=false --write --no-errors-on-unmatched --files-ignore-unknown=true {staged_files} && git update-index --again
+    4_type_check:
+      glob: "*.{json,js,ts,tsx}"
+      run: bunx tsc --noEmit -p ./tsconfig.json
+
+pre-push:
+  commands:
+    1_format_write:
+      glob: "*.{js,ts,cjs,mjs,d.cts,d.mts,jsx,tsx,json,jsonc}"
+      run: bunx biome check --formatter-enabled=true --linter-enabled=false --organize-imports-enabled=true --write --no-errors-on-unmatched --files-ignore-unknown=true {staged_files} && git update-index --again
+    2_import_sort_fix:
+      glob: "*.{js,ts,cjs,mjs,d.cts,d.mts,jsx,tsx,json,jsonc}"
+      run: bunx biome check --formatter-enabled=false --linter-enabled=false --organize-imports-enabled=true --fix --unsafe --no-errors-on-unmatched --files-ignore-unknown=true {staged_files} && git update-index --again
+    3_lint_fix:
+      glob: "*.{js,ts,cjs,mjs,d.cts,d.mts,jsx,tsx,json,jsonc}"
+      run: bunx biome check --write --no-errors-on-unmatched --files-ignore-unknown=true {staged_files} && git update-index --again
+    4_type_check:
+      glob: "*.{json,js,ts,tsx}"
+      run: bunx tsc --noEmit -p ./tsconfig.json
+    5_build:
+      run: bun run build

@@ -1,0 +1,49 @@
+{
+	"[css]": {
+		"editor.defaultFormatter": "biomejs.biome"
+	},
+	"[javascript]": {
+		"editor.defaultFormatter": "biomejs.biome"
+	},
+	"[javascriptreact]": {
+		"editor.defaultFormatter": "biomejs.biome"
+	},
+	"[typescript]": {
+		"editor.defaultFormatter": "biomejs.biome"
+	},
+	"[typescriptreact]": {
+		"editor.defaultFormatter": "biomejs.biome"
+	},
+	"editor.codeActionsOnSave": {
+		"quickfix.biome": "explicit",
+		"source.fixAll": "explicit",
+		"source.fixAll.biome": "explicit",
+		"source.fixAll.ts": "explicit",
+		"source.organizeImports.biome": "explicit",
+		"source.removeUnusedImports.ts": "explicit"
+	},
+	"editor.defaultFormatter": "biomejs.biome",
+	"editor.formatOnPaste": false,
+	"editor.formatOnSave": true,
+	"editor.inlineSuggest.enabled": true,
+	"editor.quickSuggestions": {
+		"strings": true
+	},
+	"explorer.confirmDelete": true,
+	"explorer.confirmDragAndDrop": true,
+	"files.encoding": "utf8",
+	"files.insertFinalNewline": true,
+	"files.trimTrailingWhitespace": true,
+	"javascript.preferences.importModuleSpecifier": "relative",
+	"javascript.updateImportsOnFileMove.enabled": "always",
+	"search.exclude": {
+		".git/**": true,
+		"bun.lock": true,
+		"node_modules/**": true
+	},
+	"typescript.preferences.importModuleSpecifier": "relative",
+	"typescript.suggest.autoImports": true,
+	"typescript.tsdk": "node_modules/typescript/lib",
+	"typescript.updateImportsOnFileMove.enabled": "always",
+	"cSpell.words": ["untamparable"]
+}

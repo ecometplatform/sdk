@@ -1,0 +1,105 @@
+{
+	"$schema": "https://biomejs.dev/schemas/1.9.4/schema.json",
+	"css": {
+		"assists": {
+			"enabled": true
+		},
+		"formatter": {
+			"enabled": true
+		},
+		"linter": {
+			"enabled": true
+		}
+	},
+	"files": {
+		"ignoreUnknown": true,
+		"include": ["src", "*.md", "*.json"],
+		"ignore": ["node_modules", ".next", ".turbo"]
+	},
+	"formatter": {
+		"enabled": true,
+		"lineWidth": 100,
+		"useEditorconfig": true
+	},
+	"javascript": {
+		"formatter": {
+			"enabled": true,
+			"jsxQuoteStyle": "double",
+			"quoteProperties": "preserve",
+			"quoteStyle": "double",
+			"semicolons": "asNeeded"
+		}
+	},
+	"linter": {
+		"enabled": true,
+		"rules": {
+			"a11y": {
+				"noLabelWithoutControl": "off",
+				"noSvgWithoutTitle": "off",
+				"recommended": true,
+				"useKeyWithClickEvents": "off"
+			},
+			"complexity": {
+				"noForEach": "off",
+				"noStaticOnlyClass": "off",
+				"noUselessTernary": {
+					"fix": "safe",
+					"level": "error"
+				},
+				"recommended": true,
+				"useLiteralKeys": "off",
+				"useOptionalChain": {
+					"fix": "safe",
+					"level": "error"
+				}
+			},
+			"nursery": {
+				"recommended": true,
+				"useConsistentMemberAccessibility": "off",
+				"noNestedTernary": "error",
+				"useSortedClasses": {
+					"fix": "safe",
+					"level": "warn",
+					"options": {}
+				}
+			},
+			"recommended": true,
+			"security": {
+				"noDangerouslySetInnerHtml": "off"
+			},
+			"correctness": {
+				"noUnusedImports": { "level": "warn", "fix": "unsafe" },
+				"noUnusedVariables": { "level": "warn", "fix": "unsafe" }
+			},
+			"style": {
+				"noUnusedTemplateLiteral": {
+					"fix": "safe",
+					"level": "error"
+				},
+				"noUselessElse": {
+					"fix": "safe",
+					"level": "error"
+				},
+				"recommended": true,
+				"useSelfClosingElements": {
+					"fix": "safe",
+					"level": "error"
+				},
+				"useTemplate": {
+					"fix": "safe",
+					"level": "error"
+				}
+			},
+			"suspicious": {
+				"noArrayIndexKey": "off",
+				"noMisleadingCharacterClass": "off",
+				"noShadowRestrictedNames": "off",
+				"recommended": true,
+				"useAwait": "error"
+			}
+		}
+	},
+	"organizeImports": {
+		"enabled": true
+	}
+}

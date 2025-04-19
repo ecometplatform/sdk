@@ -1,0 +1,4 @@
+{
+  "excludeRegExp": ["node_modules","dist"],
+  "fileExtensions": ["ts", "js"]
+}

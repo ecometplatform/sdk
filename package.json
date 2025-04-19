@@ -1,0 +1,68 @@
+{
+	"author": "ecomet",
+	"devDependencies": {
+		"@biomejs/biome": "^1.9.4",
+		"@commitlint/cli": "^19.8.0",
+		"@commitlint/config-conventional": "^19.8.0",
+		"@semantic-release/changelog": "^6.0.3",
+		"@semantic-release/commit-analyzer": "^13.0.1",
+		"@semantic-release/git": "^10.0.1",
+		"@semantic-release/github": "^11.0.1",
+		"@semantic-release/npm": "^12.0.1",
+		"@semantic-release/release-notes-generator": "^14.0.3",
+		"@total-typescript/ts-reset": "^0.6.1",
+		"bunchee": "^6.5.0",
+		"knip": "^5.50.5",
+		"lefthook": "^1.11.10",
+		"madge": "^8.0.0",
+		"ms": "^2.1.3",
+		"npm-check-updates": "^17.1.18",
+		"only-allow": "^1.2.1",
+		"typescript": "^5.8.3",
+		"typescript-coverage-report": "^1.1.1"
+	},
+	"exports": {
+		".": {
+			"import": {
+				"default": "./dist/index.js",
+				"types": "./dist/index.d.ts"
+			}
+		}
+	},
+	"files": ["dist"],
+	"license": "MIT",
+	"main": "./dist/index.js",
+	"module": "./dist/index.js",
+	"name": "@ecomet/sdk",
+	"private": false,
+	"publishConfig": {
+		"access": "public"
+	},
+	"scripts": {
+		"build": "bunchee -m",
+		"circular-dep:check": "bunx madge --circular $(find ./src -type f -name '*.ts' -o -name '*.tsx' -o -name '*.js')",
+		"commitlint:init": "chmod +x .lefthook/commit-msg/commitlint.sh",
+		"format:check": "bunx biome check --formatter-enabled=true --organize-imports-enabled=false --linter-enabled=false ./src",
+		"format:fix": "bunx biome check --formatter-enabled=true --organize-imports-enabled=false --linter-enabled=false --write ./src",
+		"import-sort:check": "bunx biome check --organize-imports-enabled=true --formatter-enabled=false --linter-enabled=false ./src",
+		"import-sort:fix": "bunx biome check --organize-imports-enabled=true --formatter-enabled=false --linter-enabled=false --write --unsafe ./src",
+		"lefthook:init": "bunx lefthook install",
+		"lint:check": "bunx biome check --linter-enabled=true --formatter-enabled=false --organize-imports-enabled=false .",
+		"lint:fix": "bunx biome check --linter-enabled=true --formatter-enabled=false --organize-imports-enabled=false --write ./src",
+		"lint:fix:unsafe": "bunx biome check --linter-enabled=true --formatter-enabled=false --organize-imports-enabled=false --write --unsafe ./src",
+		"madge:circular": "madge --circular src/",
+		"madge:dependencies": "madge --image deps.svg src/index.ts",
+		"precommit": "bun run format:fix && bun run import-sort:fix && bun run lint:fix && bun run type:check",
+		"preinstall": "bunx only-allow bun",
+		"setup": "bunx lefthook install && chmod +x .lefthook/commit-msg/commitlint.sh && bun install",
+		"type:check": "tsc --noEmit",
+		"type:coverage": "typescript-coverage-report",
+		"unused:check": "knip",
+		"update:check": "bun x npm-check-updates",
+		"update:install": "bunx npm-check-updates --deep -u && bun install"
+	},
+	"sideEffects": false,
+	"type": "module",
+	"types": "./dist/index.d.ts",
+	"version": "1.0.0"
+}
